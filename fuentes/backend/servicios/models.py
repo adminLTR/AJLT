@@ -16,8 +16,8 @@ class Trabajador(models.Model):
     ciclo = models.IntegerField()
     imagen = models.ImageField(null=True, blank=True)
     staff = models.BooleanField()
-    institucion = models.ForeignKey(clientes_models.Institucion) #falta relacionar
-    carrera = models.ForeignKey(clientes_models.Carrera) #falta relacionar
+    institucion = models.ForeignKey(clientes_models.Institucion, on_delete=models.CASCADE) 
+    carrera = models.ForeignKey(clientes_models.Carrera, on_delete=models.CASCADE) 
 
 class Tema(models.Model):
     nombre = models.CharField(max_length=100)
@@ -35,10 +35,10 @@ class Servicio(models.Model):
     fecha_finalizacion = models.DateTimeField(null=True, blank=True)
     fecha_limite = models.DateTimeField(auto_now=True)
     fecha_entrega = models.DateField(null=True, blank=True)
-    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE) #falta relacionar
+    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE) 
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     tipo_servicio = models.ForeignKey(TipoServicio, on_delete=models.CASCADE)
-    cliente = models.ForeignKey(clientes_models.Cliente) #falta relacionar
+    cliente = models.ForeignKey(clientes_models.Cliente, on_delete=models.CASCADE) 
     tema = models.ManyToManyField(Tema) #relacion de muchos a muchos
 
 class TipoPagos(models.Model):
