@@ -6,14 +6,23 @@ class Institucion(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     abreviatura = models.CharField(max_length=100, null= True)
     imagen = models.ImageField(null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return self.nombre
 
 class Carrera(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     imagen = models.ImageField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.nombre
+
 class Fuente(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     imagen = models.ImageField(null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return self.nombre
     
 class Cliente (models.Model):
     nombre = models.CharField(max_length=100)
@@ -26,3 +35,6 @@ class Cliente (models.Model):
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE)
     carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE)
     fuente = models.ForeignKey(Fuente, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.nombre + " " +self.apellido

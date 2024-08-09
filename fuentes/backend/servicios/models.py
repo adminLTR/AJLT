@@ -7,6 +7,9 @@ class TipoServicio(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     imagen = models.ImageField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.nombre
+
 class Trabajador(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
@@ -19,14 +22,23 @@ class Trabajador(models.Model):
     institucion = models.ForeignKey(clientes_models.Institucion, on_delete=models.CASCADE) 
     carrera = models.ForeignKey(clientes_models.Carrera, on_delete=models.CASCADE) 
 
+    def __str__(self) -> str:
+        return self.nombre + " " + self.apellido
+
 class Tema(models.Model):
     nombre = models.CharField(max_length=100)
     imagen = models.ImageField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.nombre
 
 class Curso(models.Model):
     nombre_curso = models.CharField(max_length=100)
     imagen = models.ImageField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.nombre_curso
+    
 class Servicio(models.Model):
     descripcion = models.CharField(max_length=100, null=True, blank=True)
     comentario = models.CharField(max_length=100, null=True, blank=True)
@@ -41,12 +53,5 @@ class Servicio(models.Model):
     cliente = models.ForeignKey(clientes_models.Cliente, on_delete=models.CASCADE) 
     tema = models.ManyToManyField(Tema) #relacion de muchos a muchos
 
-class TipoPagos(models.Model):
-    nombre = models.CharField(max_length=100)
-    imagen = models.ImageField(null=True, blank=True)
-
-class Pago(models.Model):
-    fecha_pago = models.DateTimeField()
-    monto = models.FloatField()
-    tipo_pagos = models.ForeignKey(TipoPagos, on_delete=models.CASCADE)
-    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.tipo_servicio.nombre
