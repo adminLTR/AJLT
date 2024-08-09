@@ -1,5 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 
+import { formatTitle } from "./js/helpers";
+
 import Logo from "./assets/logo.png";
 
 import "./app.css";
@@ -8,8 +10,8 @@ export default function Layout() {
     
     const loc = useLocation();
 
-    return <div className="w-full h-full flex">
-        <nav className="bg-black w-fit py-8 px-8 text-primary">
+    return <div className="w-full h-full flex overflow-hidden">
+        <nav className="bg-black w-fit py-8 px-8 text-primary hidden lg:block h-full">
             <a href="#" className="nav-header flex justify-around items-center gap-2">
                 <img width={60} src={Logo} alt="AJL Services" className="circle"/>
                 <span className="text-xl font-bold" href="#">Services</span>
@@ -32,8 +34,13 @@ export default function Layout() {
                 </Link></li>
             </ul>
         </nav>
-        <main className="flex-grow">
-            <Outlet/>
+        <main className="flex-grow bg-primary-soft h-full overflow-scroll scroll-hide">
+            <div className="header p-4 bg-primary sticky top-0">
+                <h2 className="text-xl">{formatTitle(loc.pathname)}</h2>
+            </div>
+            <div className="p-4">
+                <Outlet/>
+            </div>
         </main>
     </div>
 }

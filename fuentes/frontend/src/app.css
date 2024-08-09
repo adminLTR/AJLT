@@ -1,17 +1,21 @@
 :root {
     --primary: #FFE4BB;
+    --primary-soft: #fff2e6;
     --primary-hover: #ffcd86;
 }
 * {
     font-family: "Lexend", sans-serif;
 }
 
+.bg-primary-soft {background-color: var(--primary-soft);}
+.bg-primary {background-color: var(--primary);}
+
 .text-primary, .link-primary { color: var(--primary); }
 
 .link-primary {
     transition: all ease-in-out .2s;
     border-radius: 16px;
-    padding: .25rem .5rem;
+    padding: .5rem;
 }
 .link-primary:hover, .link-primary.active {
     background-color: var(--primary);
@@ -20,3 +24,21 @@
 
 
 .circle { border-radius: 50%; }
+
+
+.card {
+    background-color: #fff8f1;
+    border-radius: 20px;
+}
+
+
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.scroll-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
