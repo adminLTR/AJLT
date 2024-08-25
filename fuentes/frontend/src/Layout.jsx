@@ -2,98 +2,45 @@ import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { formatTitle } from "./js/helpers";
 import Logo from "./assets/logo.png";
+
 import "./app.css";
 
 export default function Layout() {
     const [isOpen, setIsOpen] = useState(false);
-    const loc = useLocation();
 
-    return (
-        <div className="w-full h-full flex overflow-hidden">
-            <nav
-                className={`bg-black py-8 px-8 text-primary h-full transform transition-transform duration-300 ${
-                    isOpen ? "translate-x-0" : "-translate-x-full"
-                } md:translate-x-0 w-64 fixed md:relative`}
-            >
-                <a href="#" className="nav-header flex justify-around items-center gap-2">
-                    <img width={60} src={Logo} alt="AJL Services" className="circle" />
-                    <span className="text-xl font-bold">Services</span>
-                </a>
-                <ul className="nav-body pt-8">
-                    <li className="mb-6">
-                        <Link
-                            to="/"
-                            className={`link-primary flex items-center ${
-                                loc.pathname === "/" ? "active" : ""
-                            }`}
-                        >
-                            <i className="fa-solid fa-chart-line w-2/12"></i> Dashboard
-                        </Link>
-                    </li>
-                    <li className="mb-6">
-                        <Link
-                            to="/clientes"
-                            className={`link-primary flex items-center ${
-                                loc.pathname.includes("/clientes") ? "active" : ""
-                            }`}
-                        >
-                            <i className="fa-solid fa-users w-2/12"></i> Clientes
-                        </Link>
-                    </li>
-                    <li className="mb-6">
-                        <Link
-                            to="/trabajadores"
-                            className={`link-primary flex items-center ${
-                                loc.pathname.includes("/trabajadores") ? "active" : ""
-                            }`}
-                        >
-                            <i className="fa-solid fa-user-tie w-2/12"></i> Trabajadores
-                        </Link>
-                    </li>
-                    <li className="mb-6">
-                        <Link
-                            to="/servicios"
-                            className={`link-primary flex items-center ${
-                                loc.pathname.includes("/servicios") ? "active" : ""
-                            }`}
-                        >
-                            <i className="fa-solid fa-sheet-plastic w-2/12"></i> Servicios
-                        </Link>
-                    </li>
-                    <li className="mb-6">
-                        <Link
-                            to="/finanzas"
-                            className={`link-primary flex items-center ${
-                                loc.pathname.includes("/finanzas") ? "active" : ""
-                            }`}
-                        >
-                            <i className="fa-solid fa-dollar-sign w-2/12"></i> Finanzas
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
-            <main
-                className={`flex-grow bg-primary-soft h-full overflow-scroll scroll-hide transition-all duration-300 ${
-                    isOpen ? "ml-64" : "ml-0"
-                }`}
-            >
-                <div className="header p-4 bg-primary sticky top-0 flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                        <button
-                            className="p-1 rounded-lg text-black block md:hidden"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            <i className="fa-solid fa-bars"></i>
-                        </button>
-                        <h2 className="text-xl">{formatTitle(loc.pathname)}</h2>
-                    </div>
-                    <div></div>
-                </div>
-                <div className="p-4">
-                    <Outlet />
-                </div>
-            </main>
-        </div>
-    );
+  return (
+    <div className="flex h-screen">
+      {/* Toggle button for mobile */}
+      <div className="md:hidden flex items-center p-4">
+        <button onClick={toggleSidebar} className="text-gray-500 focus:outline-none">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      {/* Sidebar */}
+      <div
+        className={`fixed inset-y-0 left-0 transform bg-gray-800 text-white w-64 p-4 transition-transform duration-300 ease-in-out 
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0`}
+      >
+        <h2 className="text-2xl font-semibold mb-4">Sidebar</h2>
+        <ul>
+          <li className="mb-2"><a href="#" className="block p-2">Item 1</a></li>
+          <li className="mb-2"><a href="#" className="block p-2">Item 2</a></li>
+          <li className="mb-2"><a href="#" className="block p-2">Item 3</a></li>
+        </ul>
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-bold">Main Content</h1>
+        <p>This is the main content area.</p>
+      </div>
+    </div>
+  );
 }
