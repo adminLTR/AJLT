@@ -29,16 +29,38 @@ export default function Layout() {
                     <img src={Logo} alt="ALT Services" className="rounded-full" width={80}/>
                     <h2 className="text-xl text-primary">AJL Services</h2>
                 </div>
-                <ul>
-                    <li className="mb-2"><a href="#" className="block p-2">Item 1</a></li>
-                    <li className="mb-2"><a href="#" className="block p-2">Item 2</a></li>
-                    <li className="mb-2"><a href="#" className="block p-2">Item 3</a></li>
+                <ul className="py-8">
+                    <li className="mb-4">
+                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                            <i className="fa-solid fa-chart-line"></i> Dashboard
+                        </Link>
+                    </li>
+                    <li className="mb-4">
+                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                            <i className="fa-solid fa-users"></i> Clientes
+                        </Link>
+                    </li>
+                    <li className="mb-4">
+                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                            <i className="fa-solid fa-book"></i> Servicios
+                        </Link>
+                    </li>
+                    <li className="mb-4">
+                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                            <i className="fa-solid fa-user-tie"></i> Trabajadores
+                        </Link>
+                    </li>
+                    <li className="mb-4">
+                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                            <i className="fa-solid fa-dollar-sign"></i> Finanzas
+                        </Link>
+                    </li>
                 </ul>
             </aside>
             
-            <div className="w-full">
+            <div className="w-full flex flex-col">
                 {/* header */}
-                <div className="px-4 py-2 w-full flex justify-between items-center">
+                <div className="px-4 py-5 w-full flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                         {/* Toggle button for mobile */}
                         <div className="md:hidden flex items-center p-4">
@@ -56,9 +78,8 @@ export default function Layout() {
                 </div>
 
                 {/* Main content */}
-                <div className="flex-1 p-8">
-                    <h1 className="text-3xl font-bold">Main Content</h1>
-                    <p>This is the main content area.</p>
+                <div className="flex-1 p-8 overflow-scroll scroll-hide bg-slate-100">
+                    
                 </div>
             </div>
         </div>
