@@ -6,7 +6,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout/>,
-        /* children: [
+        children: [
             {
                 index: true,
                 element: <Dashboard/>
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
                 path: 'clientes/',
                 element: <h1>Clientes</h1>
             }
-        ] */
+        ]
     }
 ]);
 

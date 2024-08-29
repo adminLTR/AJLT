@@ -25,13 +25,6 @@
 
 .circle { border-radius: 50%; }
 
-
-.card {
-    background-color: #fff8f1;
-    border-radius: 20px;
-}
-
-
 .scroll-hide::-webkit-scrollbar {
     display: none;
 }

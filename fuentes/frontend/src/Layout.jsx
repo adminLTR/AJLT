@@ -6,6 +6,9 @@ import Logo from "./assets/logo.png";
 import "./app.css";
 
 export default function Layout() {
+
+    const loc = useLocation();
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -31,27 +34,27 @@ export default function Layout() {
                 </div>
                 <ul className="py-8">
                     <li className="mb-4">
-                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                        <Link className={`link-primary flex gap-2 items-center ${loc.pathname==='/' ? 'active' : ''}`} to={'/'}>
                             <i className="fa-solid fa-chart-line"></i> Dashboard
                         </Link>
                     </li>
                     <li className="mb-4">
-                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                        <Link className={`link-primary flex gap-2 items-center ${loc.pathname==='/clientes/' ? 'active' : ''}`} to={'clientes/'}>
                             <i className="fa-solid fa-users"></i> Clientes
                         </Link>
                     </li>
                     <li className="mb-4">
-                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                        <Link className={`link-primary flex gap-2 items-center ${loc.pathname==='/servicios/' ? 'active' : ''}`} to={'servicios/'}>
                             <i className="fa-solid fa-book"></i> Servicios
                         </Link>
                     </li>
                     <li className="mb-4">
-                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                        <Link className={`link-primary flex gap-2 items-center ${loc.pathname==='/trabajadores/' ? 'active' : ''}`} to={'trabajadores/'}>
                             <i className="fa-solid fa-user-tie"></i> Trabajadores
                         </Link>
                     </li>
                     <li className="mb-4">
-                        <Link className="link-primary flex gap-2 items-center" to={'/'}>
+                        <Link className={`link-primary flex gap-2 items-center ${loc.pathname==='/finanzas/' ? 'active' : ''}`} to={'finanzas/'}>
                             <i className="fa-solid fa-dollar-sign"></i> Finanzas
                         </Link>
                     </li>
@@ -71,15 +74,15 @@ export default function Layout() {
                             </button>
                         </div>
                         <h2>
-                            Dashboard
+                            {formatTitle(loc.pathname)}
                         </h2>
                     </div>
                     <div></div>
                 </div>
 
                 {/* Main content */}
-                <div className="flex-1 p-8 overflow-scroll scroll-hide bg-slate-100">
-                    
+                <div className="flex-1 overflow-scroll scroll-hide bg-slate-50">
+                    <Outlet/>
                 </div>
             </div>
         </div>
